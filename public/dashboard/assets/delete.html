@@ -1,0 +1,24 @@
+<div>
+  <div class="card" style="text-align: center;">
+    <div class="card-content">
+
+      <img src="assets/img/warning.png" style="max-width:150px;">
+
+      <h3>Are you sure?</h3>
+      <p>You will not be able to revert this action!</p>
+
+      <div style="text-align: center;">
+        <button type="button" class="btn btn-danger" ng-click="ok()">
+          <i class="fa fa-check"></i>
+          Delete
+        </button>
+        <button type="button" class="btn btn-warning" ng-click="exit()">
+          <i class="fa fa-times"></i>
+          Cancel
+        </button>
+        <img src="assets/img/584b607f5c2ff075429dc0e7b8d142ef.gif" style="width:50px;height:50px;float:left;" ng-if="loading">
+      </div>
+      <br>
+    </div>
+  </div>
+</div>

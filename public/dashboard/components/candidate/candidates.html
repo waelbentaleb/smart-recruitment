@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <div class="card-content">
+    <div class="card">
+      <div class="card-header card-header-icon" data-background-color="purple">
+        <i class="material-icons">supervised_user_circle</i>
+      </div>
+      <div class="card-content">
+        <h4 class="card-title">Candidates</h4>
+        <div class="toolbar">
+          <!--        Here you can write extra buttons/actions for the toolbar              -->
+        </div>
+        <div>
+
+          <button class="btn btn-primary btn-success" style="margin-left:auto; margin-right: 0;display:block" ng-click="addCandidate()">
+            <span class="btn-label">
+              <i class="material-icons">library_add</i>
+            </span>
+            Add Candidate
+          </button>
+
+          <div ng-if="candidates" ui-grid="gridOptions" style="height: calc(93vh - 160px)"></div>
+
+        </div>
+      </div>
+      <!-- end content-->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+<div style="display:flex">
+  <div style="margin-left: 20px; margin-top:20px">
+    <h4><span class="badge badge-secondary">{{timer}} secondes</span></h4>
+  </div>
+
+  <div style="margin-top:20px; margin-left:83%">
+    <button type="button" class="btn btn-info" ng-click="nextQuestion()">Next</button>
+  </div>
+</div>
+
+<div class="col-md-6" style="margin:auto;margin-top:50px">
+  <h3>{{question.text}}</h3>
+  <br>
+
+  <div class="input-group" ng-repeat="item in question.responses" style="margin-bottom:20px">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+        <input type="radio" name="radio123" ng-model="radioSelected" ng-change="updateResponses($index)"
+          ng-value="item.text">
+      </div>
+    </div>
+    <input ng-model="item.text" type="text" class="form-control" aria-label="Text input with radio button">
+  </div>
+
+  <button type="button" class="btn btn-success col-md-12" ng-click="nextQuestion()">Valider</button>
+
+</div>
+
+<video onplay="computeFaces()" id="inputVideo" autoplay muted style="max-width: 1px;"></video>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<script>
+  var faceResults = []
+  var startTime = new Date()
+
+  $(document).ready(function () {
+    init()
+  })
+
+  async function init() {
+    await faceapi.nets.ssdMobilenetv1.load('/')
+    await faceapi.loadFaceLandmarkModel('/')
+    await faceapi.loadFaceExpressionModel('/')
+
+    const stream = await navigator.mediaDevices.getUserMedia({ video: {} })
+    const videoElement = $('#inputVideo').get(0)
+    videoElement.srcObject = stream
+  }
+
+  async function computeFaces() {
+
+    const sourceVideo = $('#inputVideo').get(0)
+
+    let minConfidence = 0.5
+    const options = new faceapi.SsdMobilenetv1Options({ minConfidence })
+
+    while (true) {
+      // while (false) {
+      try {
+        let results = await faceapi
+          .detectSingleFace(sourceVideo, options)
+          .withFaceExpressions()
+
+        let finalExpression = results.expressions[0]
+        for (let expression of results.expressions) {
+          if (expression.probability > finalExpression.probability)
+            finalExpression = expression
+        }
+
+        console.log(finalExpression.expression)
+
+        faceResults.push({
+          expression: finalExpression.expression,
+          time: (new Date() - startTime)
+        })
+
+        // await new Promise(resolve => setTimeout(resolve, 200));
+
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+</script>

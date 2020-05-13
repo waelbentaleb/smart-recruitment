@@ -1,0 +1,77 @@
+<div>
+  <div class="card">
+    <form id="TypeValidation" class="form-horizontal" action="#" method="">
+      <div class="card-header card-header-text" data-background-color="rose">
+        <h4 class="card-title">{{modelTitle}}</h4>
+      </div>
+      <div class="card-content">
+        <br>
+
+        <div class="row">
+          <label class="label-on-right" style="margin-left:3%; float:left; width:15%">Text : </label>
+          <div style="width:75%; float:left">
+            <div class="form-group label-floating">
+              <label class="control-label"></label>
+              <input ng-model="questionObject.text" class="form-control" type="text" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="label-on-right" style="margin-left:3%; float:left; width:15%">Responses : </label>
+          <div class="form-group label-floating" style="width:55%; float:left">
+            <input ng-model="response.text" class="form-control" type="text" />
+          </div>
+
+          <div class="form-group label-floating" style="width:10px; float:left">
+            &nbsp
+          </div>
+
+          <div class="form-group label-floating" style="width:10%; float:left">
+            <input ng-model="response.points" class="form-control" type="text" placeholder="Points" />
+          </div>
+
+          <button type="button" ng-click="addResponse()" style="float:right; margin-right:41px; margin-top:20px"
+            class="btn btn-primary btn-round btn-fab btn-fab-mini btn-success" ng-disabled="!response.text || !response.points">
+            <i class="material-icons">add</i>
+          </button>
+        </div>
+
+        <div class="row">
+          <div ng-repeat="response in questionObject.responses track by $index"
+            style="margin-top:10px; margin-left:50px">
+
+            {{'-  ' + response.text}}
+
+            <button type="button" style="float:right; margin-right:41px;"
+              ng-click="deleteResponse($index)" class="btn btn-primary btn-round btn-fab btn-fab-mini btn-danger">
+              <i class="material-icons">delete</i>
+            </button>
+
+            <div style="float:right; margin-right:25px;">
+              {{response.points + ' points'}}
+            </div>
+          </div>
+        </div>
+
+        <br>
+
+      </div>
+      <div style="text-align: center;">
+        <button type="button" class="btn btn-info" ng-click="ok()">
+          <i class="fa fa-check"></i>
+          Save
+        </button>
+        <button type="button" class="btn btn-warning" ng-click="exit()">
+          <i class="fa fa-times"></i>
+          Cancel
+        </button>
+        <img src="assets/img/584b607f5c2ff075429dc0e7b8d142ef.gif" style="width:50px;height:50px;float:left;"
+          ng-if="loading">
+        <br>
+        {{message}}
+      </div>
+      <br>
+    </form>
+  </div>
+</div>

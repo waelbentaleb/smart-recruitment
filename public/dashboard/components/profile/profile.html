@@ -1,0 +1,59 @@
+<div class="container">
+	<div class="card-content">
+		<div class="card">
+			<div class="card-header card-header-icon" data-background-color="purple">
+				<i class="material-icons">settings</i>
+			</div>
+			<div class="card-content">
+				<h4 class="card-title">Profile Settings</h4>
+
+				<br>
+				<label>
+					<h4 class="card-title">Change password :</h4>
+				</label>
+				<br>
+
+				<div class="row" style="margin-left:10px;">
+					<label class="col-sm-2" style="width:17%">Old password : </label>
+					<div class="form-group col-sm-3" style="margin-top:-13px">
+						<input class="form-control" type="password" ng-model="currentPassword" />
+					</div>
+				</div>
+				<br>
+
+				<div class="row" style="margin-left:10px;">
+					<label class="col-sm-2" style="width:17%">New Password : </label>
+					<div class="form-group col-sm-3" style="margin-top:-13px">
+						<input class="form-control" type="password" ng-model="newPassword" />
+					</div>
+				</div>
+				<br>
+
+				<div class="row" style="margin-left:10px;">
+					<label class="col-sm-2" style="width:17%">Confirm New Password : </label>
+					<div class="form-group col-sm-3" style="margin-top:-13px">
+						<input class="form-control" type="password" ng-model="confirmPassword" />
+					</div>
+				</div>
+
+
+				<button class="btn btn-primary btn-success" style="margin-left:30px;" ng-click="change()">
+					<span class="btn-label">
+						<i class="material-icons">save</i>
+					</span>
+					Save
+				</button>
+
+				<img ng-if="loading" src="assets/img/584b607f5c2ff075429dc0e7b8d142ef.gif" style="width:50px; height:50px; float:right; margin-right:30px">
+
+				<br>
+				<br>
+				<div class="form-footer text-left">
+					<label class="text-danger" ng-if="wrongPassword">{{message}}</label>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</div>

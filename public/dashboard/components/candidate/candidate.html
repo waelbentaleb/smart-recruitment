@@ -1,0 +1,98 @@
+<div>
+  <div class="card">
+    <form id="TypeValidation" class="form-horizontal" action="#" method="">
+      <div class="card-header card-header-text" data-background-color="rose">
+        <h4 class="card-title">{{modelTitle}}</h4>
+      </div>
+      <div class="card-content">
+        <br>
+
+        <div class="row">
+          <label class="label-on-right" style="margin-left:3%; float:left; width:25%">Name : </label>
+          <div style="width:65%; float:left">
+            <div class="form-group label-floating">
+              <label class="control-label"></label>
+              <input ng-model="candidateObject.name" class="form-control" type="text" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="label-on-right" style="margin-left:3%; float:left; width:25%">CIN : </label>
+          <div style="width:65%; float:left">
+            <div class="form-group label-floating">
+              <label class="control-label"></label>
+              <input ng-model="candidateObject.cin" class="form-control" type="text" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="label-on-right" style="margin-left:3%; float:left; width:25%">Email : </label>
+          <div style="width:65%; float:left">
+            <div class="form-group label-floating">
+              <label class="control-label"></label>
+              <input ng-model="candidateObject.email" class="form-control" type="text" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="label-on-right" style="margin-left:3%; float:left; width:25%">Phone : </label>
+          <div style="width:65%; float:left">
+            <div class="form-group label-floating">
+              <label class="control-label"></label>
+              <input ng-model="candidateObject.phone" class="form-control" type="text" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="label-on-right" style="margin-left:3%; float:left; width:25%">Position : </label>
+          <div style="width:65%; float:left">
+            <div class="form-group label-floating">
+              <label class="control-label"></label>
+              <input ng-model="candidateObject.position" class="form-control" type="text" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="label-on-right" style="margin-left:3%; float:left; width:25%">Upload Resume: </label>
+          <div style="width:65%; float:left; margin-top:13px">
+
+            <button class="btn btn-primary btn-round btn-sm btn-info" type="file" ngf-select ng-model="file"
+              ngf-multiple="false" ngf-accept="'application/pdf'" ngf-change="upload(file)">
+              <i class="material-icons">cloud_upload</i> Select File
+            </button>
+
+            <button ng-disabled="!candidateObject.cv" type="button"
+              class="btn btn-primary btn-round btn-sm btn-info" ng-click="openInNewTab(candidateObject.cv)">
+              <i class="material-icons">search</i> View
+            </button>
+
+          </div>
+        </div>
+
+        <br>
+
+      </div>
+      <div style="text-align: center;">
+        <button type="button" class="btn btn-info" ng-click="ok()"
+          ng-disabled="!candidateObject.name || !candidateObject.cin || !candidateObject.email || !candidateObject.phone || !candidateObject.position || !candidateObject.cv">
+          <i class="fa fa-check"></i>
+          Save
+        </button>
+        <button type="button" class="btn btn-warning" ng-click="exit()">
+          <i class="fa fa-times"></i>
+          Cancel
+        </button>
+        <img src="assets/img/584b607f5c2ff075429dc0e7b8d142ef.gif" style="width:50px;height:50px;float:left;"
+          ng-if="loading">
+        <br>
+        {{message}}
+      </div>
+      <br>
+    </form>
+  </div>
+</div>

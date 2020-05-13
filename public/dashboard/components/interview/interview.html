@@ -1,0 +1,60 @@
+<div>
+  <div class="card">
+    <form id="TypeValidation" class="form-horizontal" action="#" method="">
+      <div class="card-header card-header-text" data-background-color="rose">
+        <h4 class="card-title">{{modelTitle}}</h4>
+      </div>
+      <div class="card-content">
+        <br>
+
+        <div class="row">
+          <label class="label-on-right" style="margin-left:3%; float:left; width:15%">Candidate : </label>
+
+          <div style="width:75%; float:left; margin-top:18px">
+            <select class="form-control" ng-options="item as item.name for item in candidates track by item._id"
+              ng-model="interviewObject.candidate">
+              <option value="" selected disabled>Select a choice</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="label-on-right" style="margin-left:3%; float:left; width:15%">QCM : </label>
+
+          <div style="width:75%; float:left; margin-top:18px">
+            <select class="form-control" ng-options="item as item.title for item in qcms track by item._id"
+              ng-model="interviewObject.qcm">
+              <option value="" selected disabled>Select a choice</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="label-on-right" style="margin-left:3%; float:left; width:15%">Date : </label>
+
+          <div style="width:75%; float:left; margin-top:18px">
+            <input ng-model="interviewObject.date" class="form-control" type="date" />
+          </div>
+        </div>
+
+        <br>
+      </div>
+
+      <div style="text-align: center;">
+        <button type="button" class="btn btn-info" ng-click="ok()">
+          <i class="fa fa-check"></i>
+          Save
+        </button>
+        <button type="button" class="btn btn-warning" ng-click="exit()">
+          <i class="fa fa-times"></i>
+          Cancel
+        </button>
+        <img src="assets/img/584b607f5c2ff075429dc0e7b8d142ef.gif" style="width:50px;height:50px;float:left;"
+          ng-if="loading">
+        <br>
+        {{message}}
+      </div>
+      <br>
+    </form>
+  </div>
+</div>
